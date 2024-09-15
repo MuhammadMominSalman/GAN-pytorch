@@ -7,6 +7,8 @@ from torch.utils.data import DataLoader
 from models import DCGAN
 from torch.utils.tensorboard import SummaryWriter
 import torchvision.utils as vutils
+
+
 # Hyperparameters
 latent_size = 64
 batch_size = 100
@@ -37,15 +39,15 @@ if not os.path.exists(log_dir):
 writer = SummaryWriter(log_dir=log_dir)
 
 # Fixed noise for consistent image generation
-fixed_noise = torch.randn(batch_size, latent_size).to(device)
+fixed_noise = torch.randn(batch_size, latent_size, 1, 1).to(device)
 
 # Training loop
 for epoch in range(epochs):
     for i, (images, _) in enumerate(dataloader):
         images = images.to(device)
         # Create labels
-        real_labels = torch.ones(images.size(0), 1, 1, 1).to(device)
-        fake_labels = torch.zeros(images.size(0), 1, 1, 1).to(device)
+        real_labels = torch.ones(batch_size, 1, 1, 1).to(device)
+        fake_labels = torch.zeros(batch_size, 1, 1, 1).to(device)
 
         # Train discriminator
         optimizer_d.zero_grad()
@@ -53,8 +55,9 @@ for epoch in range(epochs):
         d_loss_real = criterion(outputs, real_labels)
         d_loss_real.backward()
 
-        z = torch.randn(batch_size, latent_size).to(device)
+        z = torch.randn(batch_size, latent_size, 1, 1).to(device)
         fake_images = generator(z)
+        fake_images.size()
         outputs = discriminator(fake_images.detach())
         d_loss_fake = criterion(outputs, fake_labels)
         d_loss_fake.backward()
