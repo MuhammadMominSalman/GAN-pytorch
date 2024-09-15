@@ -13,7 +13,7 @@ Generative Adversarial Networks (GANs) are a class of neural networks used to ge
 
 In this project, we implement three types of GANs.
 
-# GAN Architectures Implementation
+## GAN Architectures Implementation
 
 This repository contains implementations of different Generative Adversarial Networks (GAN) architectures for generating images. The architectures implemented include:
 
