@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 
 # Generator
-class CGAN_Generator(nn.Module):
+class Generator(nn.Module):
     def __init__(self, latent_size, num_classes):
         super(CGAN_Generator, self).__init__()
         self.label_emb = nn.Embedding(num_classes, num_classes)
@@ -23,7 +23,7 @@ class CGAN_Generator(nn.Module):
         return self.model(input)
 
 # Discriminator
-class CGAN_Discriminator(nn.Module):
+class Discriminator(nn.Module):
     def __init__(self, num_classes):
         super(CGAN_Discriminator, self).__init__()
         self.label_emb = nn.Embedding(num_classes, num_classes)

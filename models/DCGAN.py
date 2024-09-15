@@ -1,9 +1,9 @@
 import torch.nn as nn
 
 # Generator
-class DCGAN_Generator(nn.Module):
+class Generator(nn.Module):
     def __init__(self, latent_size):
-        super(DCGAN_Generator, self).__init__()
+        super(Generator, self).__init__()
         self.model = nn.Sequential(
             nn.ConvTranspose2d(latent_size, 128, 4, 1, 0, bias=False),
             nn.BatchNorm2d(128),
@@ -19,9 +19,9 @@ class DCGAN_Generator(nn.Module):
         return self.model(x)
 
 # Generator
-class DCGAN_Discriminator(nn.Module):
+class Discriminator(nn.Module):
     def __init__(self):
-        super(DCGAN_Discriminator, self).__init__()
+        super(Discriminator, self).__init__()
         self.model = nn.Sequential(
             nn.Conv2d(1, 64, 4, 2, 1, bias=False),
             nn.LeakyReLU(0.2, inplace=True),
