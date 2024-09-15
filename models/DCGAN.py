@@ -23,12 +23,12 @@ class Discriminator(nn.Module):
     def __init__(self):
         super(Discriminator, self).__init__()
         self.model = nn.Sequential(
-            nn.Conv2d(1, 64, 4, 2, 1, bias=False),
+            nn.Conv2d(1, 64, 4, 2, 1, bias=False),      #bsx64x14x14
             nn.LeakyReLU(0.2, inplace=True),
-            nn.Conv2d(64, 128, 4, 2, 1, bias=False),
+            nn.Conv2d(64, 128, 4, 2, 1, bias=False),    #bsx128x7x7
             nn.BatchNorm2d(128),
             nn.LeakyReLU(0.2, inplace=True),
-            nn.Conv2d(128, 1, 7, 1, 0, bias=False),
+            nn.Conv2d(128, 1, 7, 1, 0, bias=False),     #bsx1x1x1
             nn.Sigmoid()
         )
 
